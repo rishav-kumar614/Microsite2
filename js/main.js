@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Message:\n'      + (message ? message.value : '')
       );
 
-      window.location.href = 'mailto:krishansy1@gmail.com?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:krishan@shiftquest.com?subject=' + subject + '&body=' + body;
     });
   }
 
