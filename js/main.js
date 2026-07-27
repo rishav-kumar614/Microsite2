@@ -312,15 +312,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ── K. SERVICE ENQUIRE → DROPDOWN PREFILL ───────── */
   var serviceMap = {
-    'svc-1-inquire':  'ir-strategy',
-    'svc-2-inquire':  'union-mgmt',
-    'svc-3-inquire':  'bargaining',
-    'svc-4-inquire':  'grievance',
-    'svc-5-inquire':  'strike',
-    'svc-6-inquire':  'er-transformation',
-    'svc-7-inquire':  'contract-labour',
-    'svc-8-inquire':  'productivity',
-    'svc-9-inquire':  'labour-codes',
+    'svc-1-inquire':  'hr-transformation',
+    'svc-2-inquire':  'org-design',
+    'svc-3-inquire':  'executive-coaching',
+    'svc-4-inquire':  'culture-change',
+    'svc-5-inquire':  'talent-strategy',
+    'svc-6-inquire':  'pms',
+    'svc-7-inquire':  'workforce-planning',
+    'svc-8-inquire':  'ma-integration',
+    'svc-9-inquire':  'hr-governance',
     'svc-10-inquire': 'hr-audit',
   };
 
