@@ -731,7 +731,7 @@ ul { list-style: none; }
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  min-width: 85px;
+  min-width: 95px;
   transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
@@ -743,10 +743,11 @@ ul { list-style: none; }
 
 .stat-num {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: clamp(0.9rem, 2vw, 1.35rem);
   font-weight: 700;
   color: var(--color-primary);
   line-height: 1;
+  white-space: nowrap;
 }
 
 .stat-label {
