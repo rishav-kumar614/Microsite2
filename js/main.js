@@ -315,13 +315,9 @@ document.addEventListener('DOMContentLoaded', function () {
     'svc-1-inquire':  'hr-transformation',
     'svc-2-inquire':  'org-design',
     'svc-3-inquire':  'executive-coaching',
-    'svc-4-inquire':  'culture-change',
-    'svc-5-inquire':  'talent-strategy',
-    'svc-6-inquire':  'pms',
-    'svc-7-inquire':  'workforce-planning',
-    'svc-8-inquire':  'ma-integration',
-    'svc-9-inquire':  'hr-governance',
-    'svc-10-inquire': 'hr-audit',
+    'svc-4-inquire':  'culture-talent',
+    'svc-5-inquire':  'pms',
+    'svc-6-inquire':  'hr-governance',
   };
 
   Object.keys(serviceMap).forEach(function (id) {
