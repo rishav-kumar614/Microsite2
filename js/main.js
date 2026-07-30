@@ -329,66 +329,83 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ── L. SERVICES CAROUSEL CONTROLS ───────── */
+  /* ── L. SERVICES CAROUSEL CONTROLS & AUTOPLAY ───────── */
   var trackContainer = document.getElementById('servicesTrackContainer');
   var prevBtn        = document.getElementById('servicesPrev');
   var nextBtn        = document.getElementById('servicesNext');
-  var dotsContainer  = document.getElementById('servicesDots');
 
   if (trackContainer) {
     var cards = trackContainer.querySelectorAll('.service-card');
-    
-    // Create pagination dots
-    if (dotsContainer && cards.length > 0) {
-      dotsContainer.innerHTML = '';
-      cards.forEach(function (_, index) {
-        var dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
-        dot.addEventListener('click', function () {
-          var cardWidth = cards[0].offsetWidth + 24; // width + gap
-          trackContainer.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-        });
-        dotsContainer.appendChild(dot);
-      });
-    }
+    var autoPlayTimer = null;
+    var AUTOPLAY_INTERVAL = 5000; // 5 seconds
 
     function updateCarouselState() {
       if (!cards.length) return;
-      var cardWidth = cards[0].offsetWidth + 24;
       var scrollLeft = trackContainer.scrollLeft;
-      var currentIndex = Math.round(scrollLeft / cardWidth);
 
-      // Update dots
-      if (dotsContainer) {
-        var dots = dotsContainer.querySelectorAll('.carousel-dot');
-        dots.forEach(function (dot, i) {
-          dot.classList.toggle('active', i === currentIndex);
-        });
-      }
-
-      // Update button states
       if (prevBtn) prevBtn.disabled = scrollLeft <= 10;
       if (nextBtn) nextBtn.disabled = (scrollLeft + trackContainer.clientWidth) >= (trackContainer.scrollWidth - 10);
     }
 
+    function scrollNext() {
+      if (!cards.length) return;
+      var cardWidth = cards[0].offsetWidth + 24;
+      var maxScroll = trackContainer.scrollWidth - trackContainer.clientWidth;
+
+      if (trackContainer.scrollLeft >= maxScroll - 10) {
+        trackContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        trackContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }
+
+    function scrollPrev() {
+      if (!cards.length) return;
+      var cardWidth = cards[0].offsetWidth + 24;
+
+      if (trackContainer.scrollLeft <= 10) {
+        var maxScroll = trackContainer.scrollWidth - trackContainer.clientWidth;
+        trackContainer.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      } else {
+        trackContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      }
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(scrollNext, AUTOPLAY_INTERVAL);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
     if (prevBtn) {
       prevBtn.addEventListener('click', function () {
-        var cardWidth = cards[0].offsetWidth + 24;
-        trackContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        scrollPrev();
+        startAutoPlay();
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function () {
-        var cardWidth = cards[0].offsetWidth + 24;
-        trackContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        scrollNext();
+        startAutoPlay();
       });
     }
+
+    trackContainer.addEventListener('mouseenter', stopAutoPlay);
+    trackContainer.addEventListener('mouseleave', startAutoPlay);
+    trackContainer.addEventListener('touchstart', stopAutoPlay, { passive: true });
+    trackContainer.addEventListener('touchend', startAutoPlay, { passive: true });
 
     trackContainer.addEventListener('scroll', updateCarouselState);
     window.addEventListener('resize', updateCarouselState);
     updateCarouselState();
+    startAutoPlay();
   }
 
 }); /* end DOMContentLoaded */
