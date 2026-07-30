@@ -750,6 +750,11 @@ ul { list-style: none; }
   white-space: nowrap;
 }
 
+.stat-num--text {
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
 .stat-label {
   font-size: 0.65rem;
   font-weight: 600;
@@ -973,6 +978,11 @@ ul { list-style: none; }
   color: var(--color-primary);
   line-height: 1;
   margin-bottom: 4px;
+}
+
+.about-stat-num--text {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
 }
 
 .about-stat-label {
