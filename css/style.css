@@ -726,8 +726,8 @@ ul { list-style: none; }
 .stat-chip {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-end;
+  gap: 6px;
   padding: 6px 20px;
   background: none;
   border: none;
@@ -773,12 +773,10 @@ ul { list-style: none; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-charcoal-60);
-  margin-top: 0;
   text-align: left;
   white-space: nowrap;
   align-self: flex-start;
-  position: relative;
-  top: 1px;
+  line-height: 1;
 }
 
 .hero-ctas {
