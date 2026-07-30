@@ -329,6 +329,68 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ── L. SERVICES CAROUSEL CONTROLS ───────── */
+  var trackContainer = document.getElementById('servicesTrackContainer');
+  var prevBtn        = document.getElementById('servicesPrev');
+  var nextBtn        = document.getElementById('servicesNext');
+  var dotsContainer  = document.getElementById('servicesDots');
+
+  if (trackContainer) {
+    var cards = trackContainer.querySelectorAll('.service-card');
+    
+    // Create pagination dots
+    if (dotsContainer && cards.length > 0) {
+      dotsContainer.innerHTML = '';
+      cards.forEach(function (_, index) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+        dot.addEventListener('click', function () {
+          var cardWidth = cards[0].offsetWidth + 24; // width + gap
+          trackContainer.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function updateCarouselState() {
+      if (!cards.length) return;
+      var cardWidth = cards[0].offsetWidth + 24;
+      var scrollLeft = trackContainer.scrollLeft;
+      var currentIndex = Math.round(scrollLeft / cardWidth);
+
+      // Update dots
+      if (dotsContainer) {
+        var dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      // Update button states
+      if (prevBtn) prevBtn.disabled = scrollLeft <= 10;
+      if (nextBtn) nextBtn.disabled = (scrollLeft + trackContainer.clientWidth) >= (trackContainer.scrollWidth - 10);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        var cardWidth = cards[0].offsetWidth + 24;
+        trackContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        var cardWidth = cards[0].offsetWidth + 24;
+        trackContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      });
+    }
+
+    trackContainer.addEventListener('scroll', updateCarouselState);
+    window.addEventListener('resize', updateCarouselState);
+    updateCarouselState();
+  }
+
 }); /* end DOMContentLoaded */
 
 /* ═══════════════════════════════════════════════════════
