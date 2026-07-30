@@ -768,14 +768,17 @@ ul { list-style: none; }
 }
 
 .stat-label {
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-charcoal-60);
   margin-top: 0;
   text-align: left;
   white-space: nowrap;
+  align-self: flex-start;
+  position: relative;
+  top: 1px;
 }
 
 .hero-ctas {
