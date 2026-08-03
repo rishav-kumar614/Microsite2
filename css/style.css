@@ -685,6 +685,7 @@ ul { list-style: none; }
 
 .hero-title-accent {
   color: var(--color-primary);
+  font-style: italic;
 }
 
 .hero-subtitle {
