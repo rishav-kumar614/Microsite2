@@ -312,12 +312,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ── K. SERVICE ENQUIRE → DROPDOWN PREFILL ───────── */
   var serviceMap = {
-    'svc-1-inquire':  'hr-transformation',
-    'svc-2-inquire':  'org-design',
-    'svc-3-inquire':  'executive-coaching',
-    'svc-4-inquire':  'culture-talent',
-    'svc-5-inquire':  'pms',
-    'svc-6-inquire':  'hr-governance',
+    'svc-1-inquire':  'executive-coaching',
+    'svc-2-inquire':  'leadership-transition',
+    'svc-3-inquire':  'executive-presence',
+    'svc-4-inquire':  'career-clarity',
+    'svc-5-inquire':  'hipo-development',
+    'svc-6-inquire':  'performance-awareness',
   };
 
   Object.keys(serviceMap).forEach(function (id) {
