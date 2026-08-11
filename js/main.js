@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, 1000 / fps);
   }
- 
+
   function runCounters() {
     if (countersAnimated) return;
     countersAnimated = true;
