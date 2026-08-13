@@ -310,6 +310,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── ADVISORY FORM (NEW DESIGN) ───────────────────── */
+  var advisoryForm = document.getElementById('advisory-form');
+  var formStatus = document.getElementById('form-status');
+
+  if (advisoryForm) {
+    advisoryForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      /* Show submitting message */
+      if (formStatus) {
+        formStatus.textContent = 'Submitting secure consultation request...';
+        formStatus.className = 'form-status-message success';
+        formStatus.style.display = 'block';
+      }
+
+      /* Disable submit button */
+      var submitBtn = advisoryForm.querySelector('.form-submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+      }
+
+      /* Simulated submission */
+      setTimeout(function () {
+        if (formStatus) {
+          formStatus.textContent = 'Thank you. Your consultation request has been submitted securely. We will be in touch shortly.';
+          formStatus.className = 'form-status-message success';
+        }
+
+        /* Reset form */
+        advisoryForm.reset();
+
+        /* Enable button */
+        if (submitBtn) {
+          submitBtn.disabled = false;
+        }
+
+        /* Hide status after 6 seconds */
+        setTimeout(function () {
+          if (formStatus) {
+            formStatus.style.opacity = '0';
+            formStatus.style.transition = 'opacity 0.5s ease';
+
+            setTimeout(function () {
+              formStatus.style.display = 'none';
+              formStatus.style.opacity = '1';
+            }, 500);
+          }
+        }, 6000);
+      }, 1200);
+    });
+  }
+
 }); /* end DOMContentLoaded */
 
 /* ═══════════════════════════════════════════════════════
